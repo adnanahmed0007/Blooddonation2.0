@@ -1,42 +1,38 @@
 import jwt from "jsonwebtoken";
-const mySecretKey = process.env.JWT_SECRET;
 import DonorUserexport from "../models/DonerRegistration.js";
+
+const mySecretKey = process.env.JWT_SECRET;
+
 const verifyJwt = async (req, res, next) => {
     try {
         const token = req.cookies.jwt;
+
         if (!token) {
-            return res
-                .status(404)
-                .json({
-                    message: "erroir occured no token found"
-                })
+            return res.status(401).json({
+                message: "No token found. Please login."
+            });
         }
-        const verify = jwt.verify(token, mySecretKey);
 
+        const decoded = jwt.verify(token, mySecretKey);
 
+        const finduser = await DonorUserexport.findById(decoded.user_id);
 
-        if (!verify) {
-            return res
-                .status(401)
-                .json({
-                    message: 'token verifuvatruon failed',
-                })
+        if (!finduser) {
+            return res.status(401).json({
+                message: "User not found. Please login again."
+            });
         }
-        const finduser = await DonorUserexport.findById(verify.user_id);
 
         req.user = finduser;
-
         next();
 
+    } catch (error) {
+        console.log("JWT Error:", error.message);
 
+        return res.status(401).json({
+            message: "Invalid or expired token."
+        });
     }
-    catch (E) {
-        console.log(E);
-        return res
-            .status(404)
-            .json({
-                message: `error occured ${E}`
-            })
-    }
-}
+};
+
 export default verifyJwt;

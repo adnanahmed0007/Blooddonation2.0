@@ -12,10 +12,11 @@ const app = express();
 const PORT = process.env.PORT || 9090;
 const DB_URL = process.env.DB_URL;
 
-
+app.set("trust proxy", 1);
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://blooddonation2-0.vercel.app/signup"],
+    origin: ["http://localhost:5173",
+      "https://blooddonation2-0.vercel.app"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })

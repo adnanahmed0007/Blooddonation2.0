@@ -27,7 +27,7 @@ const sendotpuser = async (email, otpnuumerfloor) => {
       `
     });
 
-    console.log("Email sent:", info.messageId);
+
 
   } catch (error) {
     console.log("Email error:", error.message);
