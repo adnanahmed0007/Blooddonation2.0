@@ -30,7 +30,7 @@ const Signup = () => {
       const res = await axios.post(
         "https://blooddonation2-0.onrender.com/auth/api/signup",
         formData,
-        { Credentials: true }
+        { withCredentials: true }
       );
       console.log(res);
       setLoading(false);
