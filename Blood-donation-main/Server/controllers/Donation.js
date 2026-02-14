@@ -4,7 +4,7 @@ import DonorBloodDonationexport from "../models/DonorBlooddonation.js";
 const Donation = async (req, res, next) => {
     try {
         const user = req.user;
-        console.log(user)
+
 
         if (!user) {
             return res.status(404).json({ message: "Please verify your account before donating" });
@@ -27,7 +27,7 @@ const Donation = async (req, res, next) => {
             })
 
             const chcek = await newdatasaved.save();
-            console.log(chcek)
+
             if (!chcek) {
                 return res
                     .status(404)

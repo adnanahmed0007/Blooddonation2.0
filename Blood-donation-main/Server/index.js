@@ -15,7 +15,7 @@ const DB_URL = process.env.DB_URL;
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://blood-donation-snowy-seven.vercel.app"],
+    origin: ["http://localhost:5173", "https://blooddonation2-0.vercel.app/signup"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
