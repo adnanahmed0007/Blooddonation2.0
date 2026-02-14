@@ -28,7 +28,7 @@ const Signup = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:9090/auth/api/signup",
+        "https://blooddonation2-0.onrender.com/auth/api/signup",
         formData,
         { Credentials: true }
       );

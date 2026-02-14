@@ -7,7 +7,7 @@ const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
-  // Handle scroll effect
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -17,7 +17,7 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on route change
+
   useEffect(() => {
     setIsOpen(false);
   }, [location.pathname]);

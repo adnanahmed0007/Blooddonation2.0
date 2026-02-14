@@ -14,7 +14,7 @@ const Donate = () => {
 
   const [loading, setLoading] = useState(false);
 
-  // handle input change
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -26,7 +26,7 @@ const Donate = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:9090/auth/dontaion/api/donation/api/register",
+        "https://blooddonation2-0.onrender.com/auth/dontaion/api/donation/api/register",
         formData,
         { Credentials: true }
       );

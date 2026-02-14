@@ -18,7 +18,7 @@ const Verify = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:9090/auth/api/verifyotp",
+        "https://blooddonation2-0.onrender.com/auth/api/verifyotp",
         { email, otp },
         { withCredentials: true }
       );
