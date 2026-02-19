@@ -1,27 +1,22 @@
 const Logout = async (req, res) => {
     try {
-        res.cookie("jwt", "", {
-            maxAge: "",
+
+        res.clearCookie("jwt", {
             httpOnly: true,
             sameSite: "lax",
             secure: process.env.NODE_ENV === "production"
-        })
-        return res
-            .status(200)
-            .json({
-                message: "successfully loged out"
-            })
+        });
 
-    }
-    catch (e) {
+        return res.status(200).json({
+            message: "Successfully logged out"
+        });
+
+    } catch (e) {
         console.log(e);
-        return res
-            .status(400)
-            .json({
-                message: "log out failed tru again server error"
-            })
-
+        return res.status(500).json({
+            message: "Logout failed. Try again."
+        });
     }
+};
 
-}
 export default Logout;

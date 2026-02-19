@@ -1,14 +1,21 @@
 import jwt from "jsonwebtoken";
 
-const mySecretKey = process.env.JWT_SECRET;
-const Generatedtoken = async (user_id, res) => {
-  const token = jwt.sign({ user_id }, mySecretKey, { expiresIn: "15d" });
+const Generatetoken = async (user_Id, res) => {
+  const token = jwt.sign(
+    { user_Id },
+    process.env.JWT_SECRET,
+    { expiresIn: "15d" }
+  );
+
+
   res.cookie("jwt", token, {
     maxAge: 15 * 24 * 60 * 60 * 1000,
     httpOnly: true,
-    secure: true,
-    sameSite: "none",
+    secure: true,      // required for Vercel ↔ Render
+    sameSite: "none",  // required for cross-domain
   });
 
-}
-export default Generatedtoken;
+  return token;
+};
+
+export default Generatetoken;

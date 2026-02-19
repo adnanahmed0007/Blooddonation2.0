@@ -15,6 +15,7 @@ const Search = async (req, res, next) => {
                 query: query.trim(),
 
             })
+            console.log(newdataBloodrequired)
             await newdataBloodrequired.save();
 
 
