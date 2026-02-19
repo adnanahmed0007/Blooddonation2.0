@@ -32,7 +32,7 @@ const Signup = () => {
         formData,
         { withCredentials: true }
       );
-      console.log(res);
+
       setLoading(false);
       setMessage(`OTP has been sent to ${formData.email}. Please verify.`);
       setTimeout(() => {
